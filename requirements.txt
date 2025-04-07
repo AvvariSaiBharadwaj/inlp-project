@@ -1,0 +1,6 @@
+torch==2.2.1
+transformers==4.36.2
+accelerate==0.28.0
+evaluate
+datasets
+scikit-learn

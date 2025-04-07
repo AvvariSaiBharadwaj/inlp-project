@@ -4,7 +4,6 @@ import torch.nn as nn
 import torch.optim as optim
 from sklearn.metrics import classification_report
 
-# Load ELMo embeddings
 train = np.load("train_2020_elmo_embeddings.npz")
 val = np.load("validation_2020_elmo_embeddings.npz")
 test = np.load("test_2020_elmo_embeddings.npz")
@@ -32,7 +31,6 @@ model = MLP(input_dim=1024, hidden_dim=256, output_dim=num_classes)
 loss_fn = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=1e-3)
 
-# Training loop
 epochs = 10
 for epoch in range(epochs):
     model.train()
@@ -49,7 +47,6 @@ for epoch in range(epochs):
         val_acc = (val_preds == y_val).float().mean().item()
     print(f"Epoch {epoch + 1}/{epochs} - Loss: {loss.item():.4f}, Val Acc: {val_acc:.4f}")
 
-# Final evaluation
 model.eval()
 with torch.no_grad():
     test_logits = model(X_test)
